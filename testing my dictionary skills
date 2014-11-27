@@ -1,0 +1,10 @@
+aBluesTeam={'Cotterill':"The welsh wizard",'Donaldson':"The big beast",'Davis':"The tank"}
+choice = raw_input("Who has been the November player of the month?")
+if choice == 'Cotterill':
+    print aBluesTeam['Cotterill']
+elif choice == 'Donaldson':
+    print aBluesTeam['Donaldson']
+elif  choice == 'Davis':
+    print aBluesTeam['Davis']
+else:
+    print "Thats not a choice"
