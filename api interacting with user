@@ -1,0 +1,12 @@
+urlenter = raw_input("Enter a city or town")
+
+import urllib
+import json
+
+url = "http://api.openweathermap.org/data/2.5/weather?q="
+
+response = urllib.urlopen(url+urlenter).read()
+data = json.loads(response)
+temp=float(data['main']['temp']) - 273.15
+d='degrees'
+print str(temp) + d
