@@ -1,0 +1,22 @@
+code=raw_input("Enter a company code")
+
+import urllib
+import json
+
+url = "http://dev.c0l.in:9999/"
+
+response = urllib.urlopen(url+code).read()
+data = json.loads(response)
+sector = str(data['sector'])
+publish = str(data['date'])
+name = str(data['company']['name'])
+CL = float(data['company']['current_liabilities'])
+NCL = float(data['company']['non_current_liabilities'])
+TL= CL+NCL
+
+print "The Business is called..." + name
+print "Who are in the.." + sector + " sector"
+print "Current Liabilities are...£"+str(CL)
+print "And Non current liabilities are...£"+str(NCL)
+print "Which is...£" + str(TL) +" In total liabilties"
+
