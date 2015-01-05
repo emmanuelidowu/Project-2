@@ -1,3 +1,4 @@
+entry=raw_input("Type in a number")
 def countdown(n):
     while n > 0:
         print(n)
@@ -5,4 +6,5 @@ def countdown(n):
     if n<=0:
         print('ZeroTime')
 
-countdown(10)
+countdown(int(entry))
+
