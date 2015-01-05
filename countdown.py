@@ -1,10 +1,12 @@
-entry=raw_input("Type in a number")
+entry=raw_input("Type in a number ")
 def countdown(n):
-    while n > 0:
-        print(n)
-        n = n -1
-    if n<=0:
-        print('ZeroTime')
+    if n==-1:
+        print "Finished"
+    else:
+        print n
+        countdown(n-1)
 
-countdown(int(entry))
+count=(int(entry))
+countdown(count)
+
 
