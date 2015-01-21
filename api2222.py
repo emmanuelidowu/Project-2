@@ -13,6 +13,19 @@ if name == 'admin':
 else:
     print "Sorry wrong username "+".You will have to exit now"
     exit()
+
+def menu_FP():
+    choice_FP = raw_input("""Please select one of the following the view it:
+1.Company Name
+2.Company Sector
+3.Non current assets
+4.Current assests
+5.Total assets
+6.Equity
+7.Non current liabilities
+8.Current liabilities
+9.Total Equity & Liabilities""")
+    
     
 def financial_positions():
 
@@ -37,6 +50,8 @@ def financial_positions():
         data2 = json.loads(response2)
         if data2['sector'] == user_input:
             print data2['company']['name']," ID..",data2['id']
+    
+
             #with open('companies.csv', 'w+') as csvfile:
                 #fieldnames = ['Company Name', 'Equity']
                 #writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -65,8 +80,11 @@ def income_statement():
         ISurl2 = "http://dev.c0l.in:5984/income_statements/" + item['id']
         Iresponse2 = urllib2.urlopen(ISurl2).read()
         Idata2 = json.loads(Iresponse2)
-        if Idata2['sector']==user_inputI:
+        if Idata2['sector'] == user_inputI:
             print Idata2['company']['name']," ID..",Idata2['id']
+    print "Okay there are the companies, what would you like to do next"
+            
+            
 
     
 
