@@ -27,16 +27,9 @@ for item in data['rows']:
     data2 = json.loads(response2)
 
     if data2['sector'] == user_input:
-        if data2['company']['equity'] > 3000:
-             #print data2['company']['name']
-             with open('companies.csv', 'w') as csvfile:
-                fieldnames = ['Company Name', 'Equity']
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                writer.writeheader()
-                writer.writerow({'Company Name': data2['company']['name'], 'Equity': data2['company']['equity']})
-                counter += 1
-                print "item number " + str(counter) + " was written"
+        print data2['company']['name']
+             
+        
 
 print "We are done"
     #if user_input == "healthcare":
