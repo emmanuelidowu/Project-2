@@ -29,10 +29,11 @@ def menu_FP_name():
         if 'sector' in data2:
             if data2['company']['name']== name_enter:
                 print data2['company']['name'], ' ID number....', data2['id']
-                #with open('names.csv','w+') as csvfile:
-                    #fieldnames = ['Company Name', 'Non Current Assets','Current Assets','Total Assets']
-                    #writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                    #writer.writerow({'Company Name': data2['company']['name'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']})
+                with open('names.csv','wb') as csvfile:
+                    fieldnames = ['Company Name', 'Non Current Assets','Current Assets','Total Assets']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerow({'Company Name': data2['company']['name'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']})
             
     
         
