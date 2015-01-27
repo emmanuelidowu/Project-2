@@ -22,33 +22,22 @@ data = json.loads(response)
 
 def menu_FP_name():
     name_enter = raw_input("Please enter the company name you would like")
-    for item in data['rows']:
-        FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
-        response2 = urllib2.urlopen(FPurl2).read()
-        data2 = json.loads(response2)
-        if 'sector' in data2:
-            if data2['company']['name']== name_enter:
-                print data2['company']['name'], ' ID number....', data2['id']
-                with open('names.csv','wb') as csvfile:
-                    fieldnames = ['Company Name', 'Non Current Assets','Current Assets','Total Assets']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                    writer.writeheader()
+    count = 0
+    with open('data2.csv','w+') as csvfile:
+        fieldnames = ['Company Name', 'Non Current Assets','Current Assets','Total Assets']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for item in data['rows']:
+            FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
+            response2 = urllib2.urlopen(FPurl2).read()
+            data2 = json.loads(response2)
+            if 'sector' in data2:
+                if data2['company']['name']== name_enter:
+                    print data2['company']['name'], ' ID number....', data2['id']
                     writer.writerow({'Company Name': data2['company']['name'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']})
-            
-    
-        
-
-def menu_FP():
-
-    choice_FP1 = raw_input("Enter a companies ID:")
-    count = choice_FP1
-    for item in data['rows']:
-        FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
-        response2 = urllib2.urlopen(FPurl2).read()
-        data2 = json.loads(response2)
-        if 'sector' in data2:
-            if data2['id']==choice_FP1:
-                print data2['company']['name']+" ID number...",data2['id']  
+                    count +=1
+                    print "item number " , str(count) , " was written"
+        print "All ", name_enter, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten." 
     
 def financial_positions():
 
@@ -66,18 +55,21 @@ def financial_positions():
 'industry goods,'
 'financial'"""
     user_input=raw_input("Enter a sector that you would like to view:")
-    for item in data['rows']:
-        FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
-        response2 = urllib2.urlopen(FPurl2).read()
-        data2 = json.loads(response2)
-        if 'sector' in data2:
-            if data2['sector'] == user_input:
-                print data2['company']['name']," ID..",data2['id']
-    print "-------------------------"
-    menu_FP()
-        
-
-            
+    count = 0
+    with open('sector_search.csv','w+')as csvfile:
+        fieldnames = ['Company Name', 'ID Number', 'Sector', 'Non Current Assets','Current Assets','Total Assets','Equity','Non Current Liabilities','Current Liabilities','Total Equity & Liabilities']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writerheader()
+            for item in data['rows']:
+            FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
+            response2 = urllib2.urlopen(FPurl2).read()
+            data2 = json.loads(response2)
+            if 'sector' in data2:
+                if data2['sector'] == user_input:
+                    print data2['company']['name']," ID..",data2['id']
+                    writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id']'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']
+        print "-------------------------"
+                    
 def income_statement():
     ISurl = "http://dev.c0l.in:5984/income_statements/_all_docs"
     responseI = urllib2.urlopen(ISurl).read()
