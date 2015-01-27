@@ -21,10 +21,10 @@ data = json.loads(response)
 
 
 def menu_FP_name():
-    name_enter = raw_input("Please enter the company name you would like")
+    name_enter = raw_input("Please enter the company name you would like to export to csv:")
     count = 0
     with open('data2.csv','w+') as csvfile:
-        fieldnames = ['Company Name', 'Non Current Assets','Current Assets','Total Assets']
+        fieldnames = ['Company Name', 'ID Number','Sector', 'Non Current Assets','Current Assets','Total Assets','Equity','Non Current Liabilities','Current Liabilities','Total Equity & Liabilities','Date']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for item in data['rows']:
@@ -34,7 +34,7 @@ def menu_FP_name():
             if 'sector' in data2:
                 if data2['company']['name']== name_enter:
                     print data2['company']['name'], ' ID number....', data2['id']
-                    writer.writerow({'Company Name': data2['company']['name'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']})
+                    writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id'],'Sector':data2['sector'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets'], 'Equity':data2['company']['equity'],'Non Current Liabilities':data2['company']['non_current_liabilities'],'Current Liabilities':data2['company']['current_liabilities'],'Total Equity & Liabilities':data2['company']['equity']+ data2['company']['non_current_liabilities']+ data2['company']['current_liabilities'],'Date':data2['date']})
                     count +=1
                     print "item number " , str(count) , " was written"
         print "All ", name_enter, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten." 
@@ -54,20 +54,23 @@ def financial_positions():
 'technology,'
 'industry goods,'
 'financial'"""
-    user_input=raw_input("Enter a sector that you would like to view:")
+    user_input=raw_input("Enter a sector that you would like to export to csv:")
     count = 0
     with open('sector_search.csv','w+')as csvfile:
-        fieldnames = ['Company Name', 'ID Number', 'Sector', 'Non Current Assets','Current Assets','Total Assets','Equity','Non Current Liabilities','Current Liabilities','Total Equity & Liabilities']
+        fieldnames = ['Company Name', 'ID Number','Sector', 'Non Current Assets','Current Assets','Total Assets','Equity','Non Current Liabilities','Current Liabilities','Total Equity & Liabilities','Date']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writerheader()
-            for item in data['rows']:
+        writer.writeheader()
+        for item in data['rows']:
             FPurl2 = "http://dev.c0l.in:5984/financial_positions/" + item['id']
             response2 = urllib2.urlopen(FPurl2).read()
             data2 = json.loads(response2)
             if 'sector' in data2:
                 if data2['sector'] == user_input:
                     print data2['company']['name']," ID..",data2['id']
-                    writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id']'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets']
+                    writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id'],'Sector':data2['sector'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets'], 'Equity':data2['company']['equity'],'Non Current Liabilities':data2['company']['non_current_liabilities'],'Current Liabilities':data2['company']['current_liabilities'],'Total Equity & Liabilities':data2['company']['equity']+ data2['company']['non_current_liabilities']+ data2['company']['current_liabilities'],'Date':data2['date']})
+                    count +=1
+                    print "item number ",str(count), " was written"
+        print "All ", user_input, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
         print "-------------------------"
                     
 def income_statement():
