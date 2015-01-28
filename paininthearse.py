@@ -129,7 +129,7 @@ def menu_IS_name():
                     writer.writerow({'Company Name':Idata['company']['name'],'ID Number':Idata['id'],'Sector':Idata['sector'],'Sales':Idata['company']['sales'],'Opening Stock':Idata['company']['opening_stock'],'Purchases':Idata['company']['purchases'],'Closing Stock':Idata['company']['closing_stock'],'Cost of Sales':Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock'],'Gross Profit':Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']),'Expenses':Idata['company']['expenses'],'Net Profit':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['expenses'],'Interest Payable':Idata['company']['interest_payable'],'Interest Receivable':Idata['company']['interest_receivable'],'Profit for Period':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['interest_payable']+Idata['company']['interest_receivable'],'Fiscal Year Beginning':Idata['fiscal_year_beginning']})
                     count +=1
                     print "item number ",str(count), " was written"
-        print "All ", user_input, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
+        print "All ", user_inputI, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
     print"--------------------------"
 
 
