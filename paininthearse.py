@@ -1,4 +1,3 @@
-import urllib
 import urllib2
 import json
 import csv
@@ -35,7 +34,7 @@ def menu_FP_name():
                     writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id'],'Sector':data2['sector'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets'], 'Equity':data2['company']['equity'],'Non Current Liabilities':data2['company']['non_current_liabilities'],'Current Liabilities':data2['company']['current_liabilities'],'Total Equity & Liabilities':data2['company']['equity']+ data2['company']['non_current_liabilities']+ data2['company']['current_liabilities'],'Date':data2['date']})
                     count +=1
                     print "item number " , str(count) , " was written"
-        print "All ", name_enter, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
+        print "All of the data hasadmin been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
 
         print "-------------------------"
         
@@ -71,7 +70,7 @@ def financial_positions():
                     writer.writerow({'Company Name':data2['company']['name'],'ID Number': data2['id'],'Sector':data2['sector'],'Non Current Assets': data2['company']['non_current_assets'],'Current Assets':data2['company']['current_assets'],'Total Assets':data2['company']['non_current_assets']+ data2['company']['current_assets'], 'Equity':data2['company']['equity'],'Non Current Liabilities':data2['company']['non_current_liabilities'],'Current Liabilities':data2['company']['current_liabilities'],'Total Equity & Liabilities':data2['company']['equity']+ data2['company']['non_current_liabilities']+ data2['company']['current_liabilities'],'Date':data2['date']})
                     count +=1
                     print "item number ",str(count), " was written"
-        print "All ", user_input, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
+        print "All of the data has been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
         print "-------------------------"
                     
 def income_statement():
@@ -104,7 +103,7 @@ def income_statement():
                     writer.writerow({'Company Name':Idata['company']['name'],'ID Number':Idata['id'],'Sector':Idata['sector'],'Sales':Idata['company']['sales'],'Opening Stock':Idata['company']['opening_stock'],'Purchases':Idata['company']['purchases'],'Closing Stock':Idata['company']['closing_stock'],'Cost of Sales':Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock'],'Gross Profit':Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']),'Expenses':Idata['company']['expenses'],'Net Profit':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['expenses'],'Interest Payable':Idata['company']['interest_payable'],'Interest Receivable':Idata['company']['interest_receivable'],'Profit for Period':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['interest_payable']+Idata['company']['interest_receivable'],'Fiscal Year Beginning':Idata['fiscal_year_beginning']})
                     count +=1
                     print "item number ",str(count), " was written"
-        print "All ", user_input, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
+        print "All of the data has been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
     print"--------------------------"
 
 
@@ -129,7 +128,7 @@ def menu_IS_name():
                     writer.writerow({'Company Name':Idata['company']['name'],'ID Number':Idata['id'],'Sector':Idata['sector'],'Sales':Idata['company']['sales'],'Opening Stock':Idata['company']['opening_stock'],'Purchases':Idata['company']['purchases'],'Closing Stock':Idata['company']['closing_stock'],'Cost of Sales':Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock'],'Gross Profit':Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']),'Expenses':Idata['company']['expenses'],'Net Profit':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['expenses'],'Interest Payable':Idata['company']['interest_payable'],'Interest Receivable':Idata['company']['interest_receivable'],'Profit for Period':(Idata['company']['sales']-(Idata['company']['opening_stock']+Idata['company']['purchases']-Idata['company']['closing_stock']))-Idata['company']['interest_payable']+Idata['company']['interest_receivable'],'Fiscal Year Beginning':Idata['fiscal_year_beginning']})
                     count +=1
                     print "item number ",str(count), " was written"
-        print "All ", user_inputI, " have been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
+        print "All of the data has been written to csv, please ensure you rename the csv file so that it doesnt get overwritten."
     print"--------------------------"
 
 
@@ -159,7 +158,7 @@ def name_search():
         print "Sorry Incorrect Number", name_search()
 
 def start_menu():
-    print "Would you like to search by name or sector?(Enter '1' for name and '2' for sector"
+    print "Would you like to search by name or sector?(Enter '1' for name and '2' for sector)"
     choice_3=raw_input("Please enter your option:")
     if choice_3=='1':
         name_search()
@@ -170,4 +169,8 @@ def start_menu():
         
 
 start_menu()
-print "We are done"
+goagain=raw_input("Would you like to view anything else?, press 'y' for yes and 'n' for no")
+if goagain=="y":
+    start_menu()
+else:
+    print "We are done"
