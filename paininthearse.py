@@ -146,7 +146,7 @@ def sector_menu():
         print "Sorry Incorrect number", sector_menu()
 
 def name_search():
-    print "Please select one of the following that you would like to view, or go back? (1 or 2)"
+    print "Please select one of the following that you would like to view, or go back?(1, 2 or go back)"
     choice_2=raw_input("""1. Financial Position 
 2. Income Statement:""")
     if choice_2=="1":
@@ -159,11 +159,11 @@ def name_search():
         print "Sorry Incorrect Number", name_search()
 
 def start_menu():
-    print "Would you like to search by name or sector?"
+    print "Would you like to search by name or sector?(Enter '1' for name and '2' for sector"
     choice_3=raw_input("Please enter your option:")
-    if choice_3=="name" or "Name":
+    if choice_3=='1':
         name_search()
-    elif choice_3=="sector" or "Sector":
+    elif choice_3=='2':
         sector_menu()
     else:
         print "Sorry not an option, Goodbye"
