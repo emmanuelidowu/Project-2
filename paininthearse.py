@@ -134,15 +134,18 @@ def menu_IS_name():
 
 
 def sector_menu():
-    print "please select one of the following that you would like to view. (1 or 2)"
+    print "Please select one of the following that you would like to view. (1 or 2 or go back):"
     choice_1=raw_input("""1. Financial Position 
 2. Income Statement:""")
     if choice_1 =="1":
         financial_positions()
     elif choice_1 =="2":
         income_statement()
+    elif choice_1 =="go back" or "back" or "Go back" or "Go Back":
+        start_menu()
     else:
-        print "Sorry Incorrect number", sector_menu()
+        start_menu()
+       
 
 def name_search():
     print "Please select one of the following that you would like to view, or go back?(1, 2 or go back)"
@@ -152,10 +155,10 @@ def name_search():
         menu_FP_name()
     elif choice_2=="2":
         menu_IS_name()
-    elif choice_2=="go back" or "Go Back" or "Go back":
+    elif choice_2=="go back" or "Go Back" or "Go back" or "back":
         start_menu()
     else:
-        print "Sorry Incorrect Number", name_search()
+        start_menu()
 
 def start_menu():
     print "Would you like to search by name or sector?(Enter '1' for name and '2' for sector)"
@@ -165,12 +168,8 @@ def start_menu():
     elif choice_3=='2':
         sector_menu()
     else:
-        print "Sorry not an option, Goodbye"
+        start_menu()
         
 
 start_menu()
-goagain=raw_input("Would you like to view anything else?, press 'y' for yes and 'n' for no")
-if goagain=="y":
-    start_menu()
-else:
-    print "We are done"
+print "We are done"
